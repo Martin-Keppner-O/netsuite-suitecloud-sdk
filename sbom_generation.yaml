@@ -13,17 +13,26 @@ steps:
   - type: Command
     name: "Install Node.js and npm"
     command: |
-      echo "printing versions current" 
-      node --version
-      npm --version
-      nvm -v
-      echo "install new nvm versions" 
-      nvm install 16 
-      nvm use 16 
-      echo "printing new versions" 
-      node --version
-      npm --version
-      nvm -v
+      echo "installing nvm"
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        source ~/.bashrc
+        nvm install 16 
+        nvm use 16 
+        echo "printing versions" 
+        node --version
+        npm --version
+        nvm -v
+        echo "Running npm install " 
+        npm install 
+        echo "run with status code $(?)" 
+        echo "running cyclone installation now "
+        npm install --save-dev @cyclonedx/cyclonedx-npm 
+        echo "run with status code $(?)" 
+        echo "running cyclone installation now " 
+        npx @cyclonedx/cyclonedx-npm --omit dev --output-format JSON --output-file artifactSBOM.json --spec-version 1.4 2>/dev/null 
+        echo "run with status code $(?)" 
+        echo "Logging NPM Logs" 
+        cat /root/.npm/_logs/*.log 
       
   - type: Command
     name: "Install dependencies & cyclonedx-node-npm package"
