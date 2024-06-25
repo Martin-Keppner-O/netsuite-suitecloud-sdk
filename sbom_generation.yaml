@@ -16,9 +16,6 @@ steps:
       echo "installing nvm"
         # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
         # source ~/.bashrc
-        npm install -g n
-        n latest // download latest node
-        n prune // prunes previous versions
         npm install -g npm@latest 
         # nvm use 16 
         echo "printing versions" 
