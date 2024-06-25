@@ -14,15 +14,16 @@ steps:
     name: "Install Node.js and npm"
     command: |
       echo "installing nvm"
-        # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-        # source ~/.bashrc
-        npm install npm@8.19.4 -g
-        # nvm use 16 
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        source ~/.bashrc
+        nvm install 16 
+        nvm use 16 
         echo "printing versions" 
         node --version
         npm --version
         nvm -v
-        cat /root/.npm/_logs/*.log 
+        echo "Running npm install " 
+        npm install 
       
   - type: Command
     name: "Install dependencies & cyclonedx-node-npm package"
